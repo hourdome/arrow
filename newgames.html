@@ -1,0 +1,205 @@
+<html>
+<head>
+	<title>Arrows Game</title>
+	
+</head>
+<body onkeydown="keyDown(event)">
+	<div>
+		<p><font face="impact" color="green" style="font-size:400%">Arrow Game</font></p>
+		<p><font face="impact" style="font-size:150%">Free To Play</font></p>
+		<p><font face="impact" color="red" style="font-size:200%">RULES</font></p>
+		<p><font face="impact" style="font-size:200%"> => If  the  answer  correct  point  +1</font></p>
+		<p><font face="impact" style="font-size:200%"> => If  the  double arrow correct point  +2</font></p>
+		
+	</div>
+	<font face="impact" color="blue" style="font-size:150%">SCORE:</font>
+	<font id="score" face="impact" color="red" style="font-size:150%">Z</font>
+	
+	<div>
+		<p>
+			
+		</p>
+		<font face="impact" color="blue" style="font-size:150%">TIME:</font>
+		<font id="time" face="impact" color="red" style="font-size:150%">I</font>
+	</div>
+	
+
+	<script type="text/javascript">
+			
+			function keyDown(event){
+				var x = event.keyCode;
+				switch(x){
+					case 37:
+						sendAns(x);
+						break;
+					case 38:
+						sendAns(x);
+						break;
+					case 39:
+						sendAns(x);
+						break;
+					case 40:
+						sendAns(x);
+						break;
+				}
+			}
+			
+			setInterval(function(){
+				location.reload();
+			},10000);
+
+			var i = 0;	var Z = 0;	var I = 0;
+
+			document.getElementById("score").innerHTML = Z;
+			document.getElementById("time").innerHTML = I;
+
+			setInterval(function(){
+				document.getElementById("time").innerHTML = (I += 1);
+			},1000);
+
+			var y = "";
+			var checkSum = 0;
+
+			var ArrowLeft = '<img src="Z:\\Newfolder\\arrowLeft.gif" WIDTH=160 HEIGHT=160>';
+			var ArrowUp = '<img src="Z:\\Newfolder\\arrowUp.gif" WIDTH=160 HEIGHT=160>';
+			var ArrowRight = '<img src="Z:\\Newfolder\\arrowRight.gif" WIDTH=160 HEIGHT=160>';
+			var ArrowDown = '<img src="Z:\\Newfolder\\arrowDown.gif" WIDTH=160 HEIGHT=160>';
+			var ArrowLeft2 = '<img src="Z:\\Newfolder\\arrowLeft2.gif" WIDTH=160 HEIGHT=160>';
+			var ArrowUp2 = '<img src="Z:\\Newfolder\\arrowUp2.gif" WIDTH=160 HEIGHT=160>';
+			var ArrowRight2 = '<img src="Z:\\Newfolder\\arrowRight2.gif" WIDTH=160 HEIGHT=160>';
+			var ArrowDown2 = '<img src="Z:\\Newfolder\\arrowDown2.gif" WIDTH=160 HEIGHT=160>';
+			//var MISS = '<font face="impact" color="red" style="font-size:150%">MISS</font>';
+			
+			function checkArrow2(x){
+				if(x == ArrowLeft2 || x == ArrowUp2 || x == ArrowRight2 || x == ArrowDown2){
+					ScorePlus();
+				}
+			}
+			function checkArrow(x){
+				if(x == ArrowLeft2 || x == ArrowUp2 || x == ArrowRight2 || x == ArrowDown2){
+					return true;
+				}
+			}
+
+			function ScorePlus(){
+				document.getElementById("score").innerHTML = (Z += 1);
+			}
+			function ScoreMinus(){
+				document.getElementById("score").innerHTML = (Z -= 1);
+			}
+
+			var ii = 0;
+			function sendAns(x){
+				if(ii == 0){checkQuest(x,A);}
+				else if(ii == 1){checkQuest(x,B);}
+				else if(ii == 2){checkQuest(x,C);}
+				else if(ii == 3){checkQuest(x,D);}
+				else if(ii == 4){checkQuest(x,E);}
+				else if(ii == 5){checkQuest(x,F);}
+				else if(ii == 6){checkQuest(x,G);}
+				else if(ii == 7){checkQuest(x,H);}
+				else if(ii == 8){ii = 0;}
+			}
+
+			function checkQuest(x,y){
+				checkSum += x;
+				ScorePlusTrue = false;
+				if(!checkArrow(y)){
+					checkAns(x);
+				}
+				else if(checkSum >= 50){
+					checkAns(checkSum);
+					checkSum = 0;
+					if(!ScorePlusTrue){
+						checkSum = x;
+					}
+				}
+			}
+
+			var ScorePlusTrue = false;
+
+			function checkAns(x){
+				////////////////////////////////////////////////////
+							/* CHECK ARROW =? */
+				if(x == 37){y = ArrowLeft;}
+				else if(x == 38){y = ArrowUp;}
+				else if(x == 39){y = ArrowRight;}
+				else if(x == 40){y = ArrowDown;}
+				else if(x == 74){y = ArrowLeft2;}
+				else if(x == 76){y = ArrowUp2;}
+				else if(x == 78){y = ArrowRight2;}
+				else if(x == 80){y = ArrowDown2;}
+
+				////////////////////////////////////////////////////
+				if(i == 0){
+					if(y == A){
+						checkArrow2(A);	ScorePlus();	i++;	ii++;	ScorePlusTrue = true;	checkSum = 0;}
+					else{ScorePlusTrue = false;}
+				}
+				else if(i == 1){
+					if(y == B){
+						checkArrow2(B);	ScorePlus();	i++;	ii++;	ScorePlusTrue = true;	checkSum = 0;}
+					else{ScorePlusTrue = false;}
+				}
+				else if(i == 2){
+					if(y == C){
+						checkArrow2(C);	ScorePlus();	i++;	ii++;	ScorePlusTrue = true;	checkSum = 0;}
+					else{ScorePlusTrue = false;}
+				}
+				else if(i == 3){
+					if(y == D){
+						checkArrow2(D);	ScorePlus();	i++;	ii++;	ScorePlusTrue = true;	checkSum = 0;}
+					else{ScorePlusTrue = false;}
+				}
+				else if(i == 4){
+					if(y == E){
+						checkArrow2(E);	ScorePlus();	i++;	ii++;	ScorePlusTrue = true;	checkSum = 0;}
+					else{ScorePlusTrue = false;}
+				}
+				else if(i == 5){
+					if(y == F){
+						checkArrow2(F);	ScorePlus();	i++;	ii++;	ScorePlusTrue = true;	checkSum = 0;}
+					else{ScorePlusTrue = false;}
+				}
+				else if(i == 6){
+					if(y == G){
+						checkArrow2(G);	ScorePlus();	i++;	ii++;	ScorePlusTrue = true;	checkSum = 0;}
+					else{ScorePlusTrue = false;}
+				}
+				else if(i == 7){
+					if(y == H){
+						checkArrow2(H);	ScorePlus();	i++;	ii++;	ScorePlusTrue = true;	checkSum = 0;}
+					else{ScorePlusTrue = false;}
+				}
+				if(i == 8){i=0;	location.reload();}
+			}
+			
+			function randomArrow(){
+				var x = Math.floor(Math.random() * 100);
+				if(x<13){return ArrowDown;}
+				else if(x<25){return ArrowDown2;}
+				else if(x<38){return ArrowUp;}
+				else if(x<50){return ArrowUp2;}
+				else if(x<63){return ArrowLeft;}
+				else if(x<75){return ArrowLeft2;}
+				else if(x<83){return ArrowRight;}
+				else if(x<100){return ArrowRight2;}
+			}
+			
+			var A = ""; var E = "";
+			var B = ""; var F = "";
+			var C = ""; var G = "";
+			var D = ""; var H = "";
+			
+			function nextTurn(){
+				A = randomArrow(); B = randomArrow(); C = randomArrow(); D = randomArrow();
+				E = randomArrow(); F = randomArrow(); G = randomArrow(); H = randomArrow();
+				document.write(A); document.write(B); document.write(C); document.write(D);
+				document.write(E); document.write(F); document.write(G); document.write(H);
+			}
+			
+			nextTurn();
+	</script>
+</body> 
+
+</html>
